@@ -4,6 +4,7 @@ import React, {useState, useEffect} from "react";
 function App() {
     const [toDo, setToDo] = useState("")
     const [toDoList, setToDoList] = useState<string[]>([])
+    const [duplicatedListMember, setDuplicatedListMember] = useState(false)
 
     useEffect(() => {
         const storedToDoList = localStorage.getItem('toDoList');
@@ -14,10 +15,15 @@ function App() {
 
     const handleClick = () => {
         if(toDo !== "") {
-            toDoList.push(toDo)
-            setToDoList(toDoList)
+            if(toDoList.includes(toDo)){
+                setDuplicatedListMember(true)
+            }else {
+                toDoList.push(toDo)
+                setToDoList(toDoList)
+                localStorage.setItem('toDoList', JSON.stringify(toDoList))
+                setDuplicatedListMember(false)
+            }
             setToDo("")
-            localStorage.setItem('toDoList', JSON.stringify(toDoList));
         }
     }
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -40,6 +46,8 @@ function App() {
         {toDoList.map((item, index)=>(
             <h2 key={index}>{item}</h2>
             ))}
+        {duplicatedListMember &&
+        <h2>List already contains</h2>}
     </>
   )
 }
