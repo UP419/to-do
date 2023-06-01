@@ -1,14 +1,22 @@
 import './App.css'
-import {useState} from "react";
+import {useState, useEffect} from "react";
 
 function App() {
     const [toDo, setToDo] = useState("")
     const [toDoList, setToDoList] = useState<string[]>([])
+
+    useEffect(() => {
+        const storedToDoList = localStorage.getItem('toDoList');
+        if (storedToDoList) {
+            setToDoList(JSON.parse(storedToDoList));
+        }
+    }, []);
+
     const handleClick = () => {
         toDoList.push(toDo)
         setToDoList(toDoList)
         setToDo("")
-        console.log(toDoList)
+        localStorage.setItem('toDoList',JSON.stringify(toDoList));
     }
     return (
     <>
