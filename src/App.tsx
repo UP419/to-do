@@ -1,5 +1,5 @@
 import './App.css'
-import {useState, useEffect} from "react";
+import React, {useState, useEffect} from "react";
 
 function App() {
     const [toDo, setToDo] = useState("")
@@ -13,10 +13,17 @@ function App() {
     }, []);
 
     const handleClick = () => {
-        toDoList.push(toDo)
-        setToDoList(toDoList)
-        setToDo("")
-        localStorage.setItem('toDoList',JSON.stringify(toDoList));
+        if(toDo !== "") {
+            toDoList.push(toDo)
+            setToDoList(toDoList)
+            setToDo("")
+            localStorage.setItem('toDoList', JSON.stringify(toDoList));
+        }
+    }
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if(e.key === 'Enter'){
+            handleClick();
+        }
     }
     return (
     <>
@@ -26,6 +33,7 @@ function App() {
             id="username"
             value={toDo}
             onChange={(e) => setToDo(e.target.value)}
+            onKeyDown={handleKeyDown}
             required={true}
         />
         <button type="submit" onClick={handleClick}>Login</button>
