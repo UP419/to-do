@@ -22,21 +22,23 @@ function App() {
 
 
     return (
-        <>
-            <div>
+        <div className="container">
+            <div className="header">
                 <input value={inputText} onChange={handleInputChange}/>
-                <button onClick={handleClick}>Add</button>
-                <button onClick={handleClear}>Clear</button>
+                <button onClick={handleClick} className="btn2">Add</button>
+                <button onClick={handleClear} className="btn">Clear</button>
             </div>
-            <div>
-                <ul>
-                    {toDoArray.map((item, index) => (
-                        <li key={index}>{item}</li>
-                    ))
-                    }
-                </ul>
+            <div className="box">
+                    <div className="list">
+                        <ul>
+                            {toDoArray.map((item, index) => (
+                                <li key={index}>{item}</li>
+                            ))
+                            }
+                        </ul>
+                    </div>
             </div>
-        </>
+        </div>
     )
 }
 
