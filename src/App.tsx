@@ -3,11 +3,13 @@ import {SetStateAction, useState} from "react";
 function App() {
 
     const [inputText, setInputText] = useState("")
-    const [outputText, setOutputText] = useState("")
-
+    const [toDoArray, setToDoArray] = useState<string[]>([]);
     const handleClick = () => {
-        setOutputText(inputText);
+        if (inputText !== "") {
+            setToDoArray(toDoArray => [...toDoArray, inputText]);
+        }
         setInputText("");
+        console.log(toDoArray)
     }
 
     const handleInputChange = (e: { target: { value: SetStateAction<string>; }; }) => {
@@ -18,8 +20,13 @@ function App() {
     return (
         <>
             <input value={inputText} onChange={handleInputChange}/>
-            <p>{outputText}</p>
-            <button onClick={handleClick}>Increase</button>
+            <button onClick={handleClick}>Add</button>
+            <ul>
+                {toDoArray.map((item, index) => (
+                    <li key={index}>{item}</li>
+                ))
+                }
+            </ul>
         </>
     )
 }
