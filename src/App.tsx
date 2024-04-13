@@ -29,14 +29,12 @@ function App() {
                 <button onClick={handleClear} className="btn">Clear</button>
             </div>
             <div className="box">
-                    <div className="list">
-                        <ul>
-                            {toDoArray.map((item, index) => (
-                                <li key={index}>{item}</li>
-                            ))
-                            }
-                        </ul>
+                {toDoArray.map((item, index) => (
+                    <div key={index} className="list-item">
+                        <h2>{item}</h2>
                     </div>
+                ))
+                }
             </div>
         </div>
     )
