@@ -16,17 +16,26 @@ function App() {
         setInputText(e.target.value);
     }
 
+    const handleClear = () => {
+        setToDoArray([]);
+    }
+
 
     return (
         <>
-            <input value={inputText} onChange={handleInputChange}/>
-            <button onClick={handleClick}>Add</button>
-            <ul>
-                {toDoArray.map((item, index) => (
-                    <li key={index}>{item}</li>
-                ))
-                }
-            </ul>
+            <div>
+                <input value={inputText} onChange={handleInputChange}/>
+                <button onClick={handleClick}>Add</button>
+                <button onClick={handleClear}>Clear</button>
+            </div>
+            <div>
+                <ul>
+                    {toDoArray.map((item, index) => (
+                        <li key={index}>{item}</li>
+                    ))
+                    }
+                </ul>
+            </div>
         </>
     )
 }
