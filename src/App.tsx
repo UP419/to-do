@@ -20,6 +20,11 @@ function App() {
         setToDoArray([]);
     }
 
+    const itemDeleteHandler = (itemToDelete) => {
+        const filteredArray = toDoArray.filter(item => item !== itemToDelete);
+        setToDoArray(filteredArray)
+    }
+
 
     return (
         <div className="container">
@@ -32,6 +37,7 @@ function App() {
                 {toDoArray.map((item, index) => (
                     <div key={index} className="list-item">
                         <h2>{item}</h2>
+                        <button onClick={() => itemDeleteHandler(item)} className="delete-button">X</button>
                     </div>
                 ))
                 }
