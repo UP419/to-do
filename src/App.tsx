@@ -61,11 +61,11 @@ function App() {
     return (
         <div className="container">
             <div className="header">
-                <h1>To-Do List</h1>
+                <h1>To Do</h1>
                 <input value={inputText} onChange={handleInputChange} onKeyDown={handleKeyDown}/>
-                <button onClick={handleClick} className="btn2">Add</button>
+                <button onClick={handleClick} className="btn2">+ Add task</button>
                 <button onClick={handleClear} className="btn">Clear</button>
-                <button onClick={handleDoneItems}>Remove Done Tasks</button>
+                <button onClick={handleDoneItems} className="btn">Remove Done Tasks</button>
             </div>
             <div className="box">
                 {toDoArray.map((item) => (

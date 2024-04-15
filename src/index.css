@@ -25,10 +25,28 @@
 
 .btn{
   margin-left: auto;
+  background-color: transparent;
+  border: 1px solid transparent; /* Hide default border */
+  border-radius: 10px;
+  color: #000; /* Text color */
+  transition: background-color 0.3s ease; /* Smooth transition on hover */
+}
+
+.btn:hover{
+  background-color: rgba(0, 0, 0, 0.1); /* Slightly darker color on hover */
 }
 
 .btn2{
   margin: 16px;
+  background-color: transparent;
+  border: 1px solid transparent; /* Hide default border */
+  border-radius: 10px;
+  color: #000; /* Text color */
+  transition: background-color 0.3s ease; /* Smooth transition on hover */
+}
+
+.btn2:hover {
+  background-color: rgba(0, 0, 0, 0.1); /* Slightly darker color on hover */
 }
 
 
@@ -37,7 +55,7 @@
   margin: 0 auto;
   max-width: 900px;
   border: 2px solid black; /* Border style */
-  border-radius: 10px;
+  border-radius: 20px;
   padding: 10px; /* Optional padding inside the box */
   overflow: auto;
   background-color: white;
@@ -53,6 +71,14 @@
 .delete-button{
   margin-left: 10px;
   margin-right: 20px;
+  border: 1px solid transparent; /* Hide default border */
+  border-radius: 10px;
+  width: 25px;
+  height: 25px;
+}
+
+.delete-button:hover{
+  background-color: rgba(0, 0, 0, 0.1); /* Slightly darker color on hover */
 }
 
 .list-item{
