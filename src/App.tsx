@@ -1,4 +1,4 @@
-import {SetStateAction, useState} from "react";
+import {SetStateAction, useEffect, useState} from "react";
 
 function App() {
     interface toDoItem {
@@ -18,8 +18,18 @@ function App() {
             isDone: false
         };
         if (inputText !== "") {
-            setToDoArray(toDoArray => [...toDoArray, newItem]);
-            setItemNum(itemNum + 1);
+            setToDoArray(prevToDoArray => {
+                const updatedToDoArray = [...prevToDoArray, newItem];
+                localStorage.setItem("toDoArray", JSON.stringify(updatedToDoArray)); // Update localStorage
+                console.log(localStorage); // Log localStorage after update
+                return updatedToDoArray; // Return the updated state
+            });
+
+            setItemNum(prevItemNum => {
+                const updatedItemNum = prevItemNum + 1;
+                localStorage.setItem("itemNum", JSON.stringify(updatedItemNum)); // Update localStorage
+                return updatedItemNum; // Return the updated state
+            });
         }
         setInputText("");
         console.log(toDoArray)
@@ -37,11 +47,17 @@ function App() {
 
     const handleClear = () => {
         setToDoArray([]);
+        setItemNum(0);
+        localStorage.setItem("toDoArray", JSON.stringify([]));
+        localStorage.setItem("itemNum", JSON.stringify(0));
     }
 
     const itemDeleteHandler = (itemToDelete) => {
-        const filteredArray = toDoArray.filter(item => item.id !== itemToDelete);
-        setToDoArray(filteredArray)
+        setToDoArray(prevToDoArray => {
+            const updatedToDoArray = prevToDoArray.filter(item => item.id !== itemToDelete);
+            localStorage.setItem("toDoArray", JSON.stringify(updatedToDoArray));
+            return updatedToDoArray;
+        });
     }
 
     const handleCheckBoxChange = (item) => {
@@ -56,6 +72,22 @@ function App() {
         const filteredArray = toDoArray.filter(item => !item.isDone);
         setToDoArray(filteredArray);
     }
+
+    useEffect(() => {
+            console.log("afterRefresh");
+            console.log(localStorage);
+            const storedArray = localStorage.getItem("toDoArray");
+            const storedItemNum = localStorage.getItem("itemNum");
+            const arr = JSON.parse(storedArray);
+            const itemNum = JSON.parse(storedItemNum);
+            if (arr) {
+                setToDoArray(arr);
+            }
+            if (itemNum) {
+                setItemNum(itemNum);
+            }
+        }, []
+    )
 
 
     return (
