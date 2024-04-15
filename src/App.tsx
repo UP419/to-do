@@ -29,6 +29,12 @@ function App() {
         setInputText(e.target.value);
     }
 
+    const handleKeyDown = (e) => {
+        if (e.key === "Enter") {
+            handleClick();
+        }
+    }
+
     const handleClear = () => {
         setToDoArray([]);
     }
@@ -55,7 +61,8 @@ function App() {
     return (
         <div className="container">
             <div className="header">
-                <input value={inputText} onChange={handleInputChange}/>
+                <h1>To-Do List</h1>
+                <input value={inputText} onChange={handleInputChange} onKeyDown={handleKeyDown}/>
                 <button onClick={handleClick} className="btn2">Add</button>
                 <button onClick={handleClear} className="btn">Clear</button>
                 <button onClick={handleDoneItems}>Remove Done Tasks</button>
@@ -65,8 +72,8 @@ function App() {
                     <div key={item.id} className="list-item">
                         {item.isDone && <h2 className="line-through">{item.item}</h2>}
                         {!item.isDone && <h2>{item.item}</h2>}
+                        <input type="checkbox" onChange={() => handleCheckBoxChange(item)} className="checkbox"/>
                         <button onClick={() => itemDeleteHandler(item.id)} className="delete-button">X</button>
-                        <input type="checkbox" onChange={() => handleCheckBoxChange(item)}/>
                     </div>
                 ))
                 }
