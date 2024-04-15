@@ -70,8 +70,7 @@ function App() {
             <div className="box">
                 {toDoArray.map((item) => (
                     <div key={item.id} className="list-item">
-                        {item.isDone && <h2 className="line-through">{item.item}</h2>}
-                        {!item.isDone && <h2>{item.item}</h2>}
+                        <h2 className={item.isDone ? "line-through" : ""}>{item.item}</h2>
                         <input type="checkbox" onChange={() => handleCheckBoxChange(item)} className="checkbox"/>
                         <button onClick={() => itemDeleteHandler(item.id)} className="delete-button">X</button>
                     </div>
