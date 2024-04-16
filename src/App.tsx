@@ -17,7 +17,7 @@ function App() {
             id: itemNum,
             isDone: false
         };
-        if (inputText !== "") {
+        if (inputText !== "" && checkDuplicate(inputText)) {
             setToDoArray(prevToDoArray => {
                 const updatedToDoArray = [...prevToDoArray, newItem];
                 localStorage.setItem("toDoArray", JSON.stringify(updatedToDoArray)); // Update localStorage
@@ -33,6 +33,11 @@ function App() {
         }
         setInputText("");
         console.log(toDoArray)
+    }
+
+    const checkDuplicate = (inputText) => {
+        const arr = toDoArray.filter(item => item.item === inputText);
+        return arr.length === 0
     }
 
     const handleKeyDown = (e) => {
