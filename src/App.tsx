@@ -1,4 +1,4 @@
-import {SetStateAction, useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 
 function App() {
     interface toDoItem {
@@ -33,10 +33,6 @@ function App() {
         }
         setInputText("");
         console.log(toDoArray)
-    }
-
-    const handleInputChange = (e: { target: { value: SetStateAction<string>; }; }) => {
-        setInputText(e.target.value);
     }
 
     const handleKeyDown = (e) => {
@@ -94,7 +90,10 @@ function App() {
         <div className="container">
             <div className="header">
                 <h1>To Do</h1>
-                <input value={inputText} onChange={handleInputChange} onKeyDown={handleKeyDown}/>
+                <input value={inputText}
+                       onChange={(e) => setInputText(e.target.value)}
+                       onKeyDown={handleKeyDown}
+                       className="task-input"/>
                 <button onClick={handleClick} className="btn2">+ Add task</button>
                 <button onClick={handleClear} className="btn">Clear</button>
                 <button onClick={handleDoneItems} className="btn">Remove Done Tasks</button>
