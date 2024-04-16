@@ -30,6 +30,7 @@
   border-radius: 10px;
   color: #000; /* Text color */
   transition: background-color 0.3s ease; /* Smooth transition on hover */
+  cursor: pointer;
 }
 
 .btn:hover{
@@ -43,6 +44,7 @@
   border-radius: 10px;
   color: #000; /* Text color */
   transition: background-color 0.3s ease; /* Smooth transition on hover */
+  cursor: pointer;
 }
 
 .btn2:hover {
@@ -75,6 +77,7 @@
   border-radius: 10px;
   width: 25px;
   height: 25px;
+  cursor: pointer;
 }
 
 .delete-button:hover{
